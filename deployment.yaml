@@ -1,19 +1,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: PythonDock
+  name: python-dock
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: PythonDock
+      app: python-dock
   template:
     metadata:
       labels:
-        app: PythonDock
+        app: python-dock
     spec:
       containers:
-      - name: PythonDock
+      - name: python-dock
         image: pocust.azurecr.io/PythonDock:#{Build.BuildId}#
         ports:
         - containerPort: 5000
@@ -28,11 +28,11 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: PythonDock
+  name: python-dock
 spec:
   type: LoadBalancer
   ports:
   - port: 5000
   selector:
-    app: PythonDock
+    app: python-dock
  
