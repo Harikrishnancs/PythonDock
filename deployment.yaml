@@ -1,33 +1,38 @@
-apiVersion: apps/v1 # for versions before 1.9.0 use apps/v1beta2 
-kind: Deployment 
-metadata: 
-  name: pythondock 
-spec: 
-  selector: 
-    matchLabels: 
-      app: python 
-  replicas: 1 # tells deployment to run 2 pods matching the template 
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: PythonDock
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: PythonDock
   template:
-    metadata: 
-      labels: 
-        app: python 
-    spec: 
-      containers: 
-      - name: python 
-        image: harikrishnancs/pythondock:latest
-        ports: 
-        - containerPort: 5000 
---- 
-# https://kubernetes.io/docs/concepts/services-networking/service/#defining-a-service  
-kind: Service 
-apiVersion: v1 
-metadata: 
-  name: pythondock 
-spec: 
-  selector: 
-    app: python 
-  ports: 
-  - protocol: TCP 
-    port: 5000 
-    targetPort: 5000 
-  type: LoadBalancer 
+    metadata:
+      labels:
+        app: PythonDock
+    spec:
+      containers:
+      - name: PythonDock
+        image: pocust.azurecr.io/PythonDock:#{Build.BuildId}#
+        ports:
+        - containerPort: 5000
+        env:
+          - name: PODNAME
+            valueFrom:
+              fieldRef:
+                fieldPath: metadata.name
+      imagePullSecrets:
+      - name: registrysecret
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: PythonDock
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 5000
+  selector:
+    app: PythonDock
+ 
