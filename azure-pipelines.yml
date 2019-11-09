@@ -27,3 +27,9 @@ stages:
         dockerfile: '**/Dockerfile'
         tags: |
           harikrishnancs/pythondemo:v1
+          - task: Docker@2
+            inputs:
+              containerRegistry: 'Dockerhub-private'
+              repository: 'pythondemo'
+              command: 'push'
+              tags: 'v1'
