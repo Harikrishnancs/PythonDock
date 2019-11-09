@@ -1,4 +1,0 @@
-containers:
-- name: Docker
-  image: pocust.azurecr.io/pocust:latest
-  kind: Deployment
