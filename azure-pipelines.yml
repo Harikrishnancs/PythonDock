@@ -1,0 +1,38 @@
+# Docker
+# Build a Docker image 
+# https://docs.microsoft.com/azure/devops/pipelines/languages/docker
+
+trigger:
+- master
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+resources:
+- repo: self
+
+variables:
+  tag: '$(Build.BuildId)'
+
+stages:
+- stage: Check 
+  displayName: Check Stage
+  jobs:  
+  - job: Check
+    displayName: Check Stage
+    
+    steps:
+    - task: SonarCloudPrepare@1
+      inputs:
+        SonarCloud: 'Sonarcloud'
+        scannerMode: 'CLI'
+        configMode: 'manual'
+        cliProjectKey: 'sonarcloud-hari'
+        cliProjectName: 'python-docker'
+        cliSources: '.'
+        organization: 'Sonarcloud-Hari'
+
+    - task: SonarCloudAnalyze@1
+    - task: SonarCloudPublish@1
+      inputs:
+        pollingTimeoutSec: '300'
