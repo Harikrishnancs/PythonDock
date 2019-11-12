@@ -25,12 +25,9 @@ stages:
     - task: SonarCloudPrepare@1
       inputs:
         SonarCloud: 'Sonarcloud'
-        scannerMode: 'CLI'
-        configMode: 'manual'
-        cliProjectKey: 'sonarcloud-hari'
-        cliProjectName: 'python-docker'
-        cliSources: '.'
         organization: 'sonarcloud-hari'
+        scannerMode: 'CLI'
+        configMode: 'file'
 
     - task: SonarCloudAnalyze@1
     - task: SonarCloudPublish@1
