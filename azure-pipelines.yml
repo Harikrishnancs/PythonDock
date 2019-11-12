@@ -30,7 +30,7 @@ stages:
         cliProjectKey: 'sonarcloud-hari'
         cliProjectName: 'python-docker'
         cliSources: '.'
-        organization: 'Sonarcloud-Hari'
+        organization: 'sonarcloud-hari'
 
     - task: SonarCloudAnalyze@1
     - task: SonarCloudPublish@1
