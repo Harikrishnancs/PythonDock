@@ -19,7 +19,7 @@ stages:
   displayName: Check Stage
   jobs:  
   - job: Check
-    displayName: Check Stage
+    displayName: Code check
     
     steps:
     - task: SonarCloudPrepare@1
