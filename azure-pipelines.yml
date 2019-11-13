@@ -56,10 +56,7 @@ stages:
     
     - task: CmdLine@2
       inputs:
-        script: |
-          sudo ls
-          sudo mv $(System.DefaultWorkingDirectory)/twistcli /usr/bin/twistcli
-          sudo chmod +x /usr/bin/twistcli
+        script: 'dir'
         
     
     - task: twistcli-scan@1
