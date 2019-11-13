@@ -32,4 +32,8 @@ stages:
       inputs:
         pollingTimeoutSec: '300'
     
-        
+    - task: Docker@2
+      inputs:
+        containerRegistry: 'Docker'
+        command: 'build'
+        Dockerfile: '**/Dockerfile'
