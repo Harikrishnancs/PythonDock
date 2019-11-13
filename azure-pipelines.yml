@@ -4,7 +4,7 @@
 # https://aka.ms/yaml
 
 pool:
-  vmImage: 'ubuntu-latest'
+  vmImage: 'windows-latest'
 
 resources:
 - repo: self
@@ -60,7 +60,7 @@ stages:
           sudo ls
           sudo mv $(System.DefaultWorkingDirectory)/twistcli /usr/bin/twistcli
           sudo chmod +x /usr/bin/twistcli
-        workingDirectory: '$(System.DefaultWorkingDirectory)'
+        
     
     - task: twistcli-scan@1
       inputs:
