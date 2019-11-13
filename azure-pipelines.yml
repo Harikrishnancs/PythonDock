@@ -33,7 +33,7 @@ stages:
         pollingTimeoutSec: '300'
 
 
-- stage: Check 
+- stage: Build 
   displayName: Docker Stage
   jobs:  
   - job: Check
