@@ -95,14 +95,7 @@ stages:
         artifactoryService: 'Artifactory'
         targetRepo: 'docker'
         imageName: '$(imageRepository):$(tag)'
-    
-    - task: ArtifactoryPublishBuildInfo@1
-      inputs:
-        artifactoryService: 'Artifactory'
-        buildName: '$(Build.DefinitionName)'
-        buildNumber: '$(Build.BuildNumber)'
-        excludeEnvVars: 
-    
+        
     - task: OctopusCreateRelease@4
       inputs:
         OctoConnectedServiceName: 'Octopus'
