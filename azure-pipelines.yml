@@ -59,7 +59,7 @@ stages:
     - task: UniversalPackages@0
       inputs:
         command: 'download'
-        downloadDirectory: '$(Build.SourcesDirectory)'
+        downloadDirectory: '$(Build.ArtifactStagingDirectory)'
         feedsToUse: 'internal'
         vstsFeed: 'ade4b5c1-82b5-4184-8018-ee2d34698992'
         vstsFeedPackage: '311f5e8c-3cb6-49bf-8af7-4a65c935b291'
@@ -70,7 +70,7 @@ stages:
       inputs:
         script: |
           sudo ls -al
-          sudo mv $(Build.SourcesDirectory)/twistcli /usr/bin/twistcli
+          sudo mv $$(Build.ArtifactStagingDirectory) /usr/bin/twistcli
           sudo chmod +x /usr/bin/twistcli
         
     
