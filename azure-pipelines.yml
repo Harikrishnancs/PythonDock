@@ -69,8 +69,7 @@ stages:
     - task: CmdLine@2
       inputs:
         script: |
-          sudo ls -al
-          sudo mv $(System.DefaultWorkingDirectory) /usr/bin/twistcli
+          sudo mv $(System.DefaultWorkingDirectory)/C:/twistlock_19_07_363/linux/twistcli /usr/bin/twistcli
           sudo chmod +x /usr/bin/twistcli
         
     
