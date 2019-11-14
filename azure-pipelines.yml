@@ -4,7 +4,7 @@
 # https://aka.ms/yaml
 
 pool:
-  vmImage: 'ubuntu-latest'
+  vmImage: 'windows-latest'
 
 resources:
 - repo: self
@@ -48,7 +48,7 @@ stages:
     - task: UniversalPackages@0
       inputs:
         command: 'download'
-        downloadDirectory: '$(Build.ArtifactStagingDirectory)'
+        downloadDirectory: '$(System.DefaultWorkingDirectory)'
         feedsToUse: 'internal'
         vstsFeed: 'ade4b5c1-82b5-4184-8018-ee2d34698992'
         vstsFeedPackage: '311f5e8c-3cb6-49bf-8af7-4a65c935b291'
@@ -56,9 +56,7 @@ stages:
     
     - task: CmdLine@2
       inputs:
-        script: |
-          sudo mv $(Build.ArtifactStagingDirectory)/twistcli /usr/bin/twistcli
-          sudo chmod +x /usr/bin/twistcli
+        script: 'start c:\twistlock_19_07_363\linux\twistcli'
         
     
     - task: twistcli-scan@1
