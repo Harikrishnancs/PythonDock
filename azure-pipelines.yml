@@ -53,6 +53,13 @@ stages:
         repository: 'ustpoc-docker-local.jfrog.io/haripython'
         command: 'build'
         Dockerfile: '**/Dockerfile'
+    
+    - task: ArtifactoryDocker@1
+      inputs:
+        command: 'push'
+        artifactoryService: 'Artifactory'
+        targetRepo: 'docker'
+        imageName: 'ustpoc-docker-local.jfrog.io/haripython:$(Build.BuildId)'
     - task: UniversalPackages@0
       inputs:
         command: 'download'
@@ -64,7 +71,9 @@ stages:
     
     - task: CmdLine@2
       inputs:
-        script: 'start c:\twistlock_19_07_363\linux\twistcli'
+        script: |
+          sudo mv $(System.DefaultWorkingDirectory)/twistcli /usr/bin/twistcli
+          sudo chmod +x /usr/bin/twistcli
         
     
     - task: twistcli-scan@1
