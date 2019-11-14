@@ -63,17 +63,12 @@ stages:
         vstsFeedPackage: '311f5e8c-3cb6-49bf-8af7-4a65c935b291'
         vstsPackageVersion: '19.7.363'
 
-    - task: CopyFiles@2
-      inputs:
-        SourceFolder: '$(Build.StagingDirectory)'
-        Contents: '**'
-        TargetFolder: '$(Build.ArtifactStagingDirectory)'
     
     - task: CmdLine@2
       inputs:
         script: |
           sudo ls -al
-          sudo mv $(System.DefaultWorkingDirectory)/twistcli /usr/bin/twistcli
+          sudo mv $(Build.StagingDirectory)/twistcli /usr/bin/twistcli
           sudo chmod +x /usr/bin/twistcli
         
     
