@@ -70,7 +70,7 @@ stages:
       inputs:
         script: |
           sudo ls -al
-          sudo mv $(Build.SourcesDirectory) /usr/bin/twistcli
+          sudo mv $(Build.SourcesDirectory)/twistcli /usr/bin/twistcli
           sudo chmod +x /usr/bin/twistcli
         
     
