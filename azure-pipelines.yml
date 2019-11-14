@@ -101,6 +101,7 @@ stages:
         artifactoryService: 'Artifactory'
         buildName: '$(Build.DefinitionName)'
         buildNumber: '$(Build.BuildNumber)'
+        excludeEnvVars: 
     
     - task: OctopusCreateRelease@4
       inputs:
