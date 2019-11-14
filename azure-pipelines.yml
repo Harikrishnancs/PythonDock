@@ -57,7 +57,7 @@ stages:
     - task: UniversalPackages@0
       inputs:
         command: 'download'
-        downloadDirectory: '$(System.DefaultWorkingDirectory)'
+        downloadDirectory: '$(Build.StagingDirectory)'
         feedsToUse: 'internal'
         vstsFeed: 'ade4b5c1-82b5-4184-8018-ee2d34698992'
         vstsFeedPackage: '311f5e8c-3cb6-49bf-8af7-4a65c935b291'
@@ -65,8 +65,8 @@ stages:
 
     - task: CopyFiles@2
       inputs:
-        SourceFolder: '$(System.DefaultWorkingDirectory)'
-        Contents: '**tw'
+        SourceFolder: '$(Build.StagingDirectory)'
+        Contents: '**'
         TargetFolder: '$(Build.ArtifactStagingDirectory)'
     
     - task: CmdLine@2
