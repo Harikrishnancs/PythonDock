@@ -70,7 +70,7 @@ stages:
       inputs:
         script: |
           sudo ls -al
-          sudo mv $$(Build.ArtifactStagingDirectory) /usr/bin/twistcli
+          sudo mv $(Build.ArtifactStagingDirectory) /usr/bin/twistcli
           sudo chmod +x /usr/bin/twistcli
         
     
