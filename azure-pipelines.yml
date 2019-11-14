@@ -9,6 +9,7 @@ pool:
 resources:
 - repo: self
 
+
 variables:
   tag: '$(Build.BuildId)'
 
@@ -80,4 +81,4 @@ stages:
         onlyFixed: false
         gracePeriod: '0'
         complianceThreshold: 'high'
-        artifact: harikrishnancs/poc-demo:latest
+        artifact: 'ustpoc-docker-local.jfrog.io/haripython:$(tag)'
