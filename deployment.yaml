@@ -11,7 +11,7 @@ spec:
     spec:
       containers:
         - name: python
-          image: pocust.azurecr.io/PythonDock:#{Build.BuildId}#
+          image: ustpoc-docker-local.jfrog.io/haripython
           ports:
             - containerPort: 5000
 ---
