@@ -4,7 +4,7 @@
 # https://aka.ms/yaml
 
 pool:
-  vmImage: 'windows-latest'
+  vmImage: 'ubuntu-latest'
 
 resources:
 - repo: self
@@ -39,12 +39,20 @@ stages:
   - job: Check
     displayName: Scan check 
     steps:
+
+    - task: ArtifactoryDocker@1
+      inputs:
+        command: 'pull'
+        artifactoryService: 'Artifactory'
+        sourceRepo: 'docker'
+        imageName: 'ustpoc-docker.jfrog.io/python:latest'
+    
     - task: Docker@2
       inputs:
         containerRegistry: 'Docker'
+        repository: 'ustpoc-docker-local.jfrog.io/haripython'
         command: 'build'
         Dockerfile: '**/Dockerfile'
-    
     - task: UniversalPackages@0
       inputs:
         command: 'download'
@@ -68,4 +76,3 @@ stages:
         gracePeriod: '0'
         complianceThreshold: 'high'
         artifact: harikrishnancs/poc-demo:latest
-     
