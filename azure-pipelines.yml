@@ -79,7 +79,7 @@ stages:
           sudo chmod +x /usr/bin/twistcli
         
     
-    - #task: twistcli-scan@1
+    #- task: twistcli-scan@1
       #inputs:
         #scanType: 'images'
         #twistlockService: 'twistlock'
