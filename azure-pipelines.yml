@@ -101,10 +101,15 @@ stages:
        PackageId: 'python-docker'
        PackageFormat: 'NuPkg'
     
+    - task: PublishBuildArtifacts@1
+      inputs:
+        PathtoPublish: '$(Build.ArtifactStagingDirectory)\drop'
+        ArtifactName: 'python'
+        publishLocation: 'Container'
+
     - task: OctopusPush@4
       inputs:
         OctoConnectedServiceName: 'Octopus'
         Space: 'Spaces-1'
-        Package: 'python-docker'
+        Package: '$(Build.ArtifactStagingDirectory)\drop\python-docker.*.nupkg'
         Replace: 'false'
-    
