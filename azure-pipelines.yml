@@ -79,14 +79,14 @@ stages:
           sudo chmod +x /usr/bin/twistcli
         
     
-    - task: twistcli-scan@1
-      inputs:
-        scanType: 'images'
-        twistlockService: 'twistlock'
-        vulnerabilityThreshold: 'critical'
-        onlyFixed: false
-        gracePeriod: '0'
-        complianceThreshold: 'critical'
+    - #task: twistcli-scan@1
+      #inputs:
+        #scanType: 'images'
+        #twistlockService: 'twistlock'
+        #vulnerabilityThreshold: 'critical'
+        #onlyFixed: false
+        #gracePeriod: '0'
+        #complianceThreshold: 'critical'
         artifact: '$(imageRepository):$(tag)'
     
     - task: ArtifactoryDocker@1
@@ -96,13 +96,15 @@ stages:
         targetRepo: 'docker'
         imageName: '$(imageRepository):$(tag)'
         
-    - task: OctopusCreateRelease@4
+    - task: OctopusPack@4
+      inputs:
+       PackageId: 'python-docker'
+       PackageFormat: 'NuPkg'
+    
+    - task: OctopusPush@4
       inputs:
         OctoConnectedServiceName: 'Octopus'
         Space: 'Spaces-1'
-        ProjectName: 'Projects-1'
-        Channel: 'Channels-1'
-        DeployToEnvironment: 'Environments-1'
-    
-    
+        Package: 'python-docker'
+        Replace: 'false'
     
