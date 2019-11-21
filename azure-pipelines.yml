@@ -87,7 +87,7 @@ stages:
         #onlyFixed: false
         #gracePeriod: '0'
         #complianceThreshold: 'critical'
-        artifact: '$(imageRepository):$(tag)'
+        #artifact: '$(imageRepository):$(tag)'
     
     - task: ArtifactoryDocker@1
       inputs:
