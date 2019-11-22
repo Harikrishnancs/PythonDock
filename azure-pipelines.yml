@@ -98,18 +98,14 @@ stages:
         
     - task: OctopusPack@4
       inputs:
-       PackageId: 'python-docker'
-       PackageFormat: 'NuPkg'
+        PackageId: 'python-docker'
+        PackageFormat: 'NuPkg'
+        SourcePath: '$(Build.ArtifactStagingDirectory)\python'
+        OutputPath: '$(Build.ArtifactStagingDirectory)\python'
     
-    - task: PublishBuildArtifacts@1
-      inputs:
-        PathtoPublish: '$(Build.ArtifactStagingDirectory)'
-        ArtifactName: 'python'
-        publishLocation: 'Container'
-
     - task: OctopusPush@4
       inputs:
         OctoConnectedServiceName: 'Octopus'
         Space: 'Spaces-1'
-        Package: '$(Build.ArtifactStagingDirectory)\python-docker.*.nupkg'
+        Package: '$(Build.ArtifactStagingDirectory)\python\*.nupkg'
         Replace: 'false'
