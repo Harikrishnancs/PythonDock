@@ -100,12 +100,12 @@ stages:
       inputs:
         PackageId: 'python-docker'
         PackageFormat: 'NuPkg'
-        SourcePath: '$(Build.ArtifactStagingDirectory)\python'
-        OutputPath: '$(Build.ArtifactStagingDirectory)\python'
+        SourcePath: '$(Build.SourceDirectory)'
+        OutputPath: '$(Build.SourceDirectory)'
     
     - task: OctopusPush@4
       inputs:
         OctoConnectedServiceName: 'Octopus'
         Space: 'Spaces-1'
-        Package: '$(Build.ArtifactStagingDirectory)\python\*.nupkg'
+        Package: '$(Build.SourceDirectory)*.nupkg'
         Replace: 'false'
