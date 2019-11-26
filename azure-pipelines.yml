@@ -99,7 +99,7 @@ stages:
     - task: OctopusPack@4
       inputs:
         PackageId: 'python-docker'
-        PackageFormat: 'Zip'
+        PackageFormat: 'NuPkg'
         PackageVersion: '$(Build.BuildNumber)'
         SourcePath: '$(Build.ArtifactStagingDirectory)'
         OutputPath: '$(Build.ArtifactStagingDirectory)\drop'
@@ -113,6 +113,6 @@ stages:
       inputs:
         OctoConnectedServiceName: 'Octopus'
         Space: 'Default'
-        Package: '$(Build.ArtifactStagingDirectory)\drop\*.zip'
+        Package: '$(Build.ArtifactStagingDirectory)\drop\*'
         Replace: 'false'
     
