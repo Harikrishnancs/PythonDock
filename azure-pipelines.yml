@@ -101,13 +101,18 @@ stages:
         PackageId: 'python-docker'
         PackageFormat: 'Zip'
         PackageVersion: '$(Build.BuildNumber)'
-        SourcePath: '$(Build.SourceDirectory)'
+        SourcePath: '$(Build.ArtifactStagingDirectory)'
         OutputPath: '$(Build.ArtifactStagingDirectory)'
-    
+
+    - task: PublishBuildArtifacts@1
+      inputs:
+        PathtoPublish: '$(Build.ArtifactStagingDirectory)\drop'
+        ArtifactName: 'python'
+        publishLocation: 'Container'
     - task: OctopusPush@4
       inputs:
         OctoConnectedServiceName: 'Octopus'
         Space: 'Default'
-        Package: '$(Build.ArtifactStagingDirectory)/python-docker.$(Build.BuildNumber).zip'
+        Package: '$(Build.ArtifactStagingDirectory)\drop\python-docker.$(Build.BuildNumber).zip'
         Replace: 'false'
     
