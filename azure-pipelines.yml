@@ -83,10 +83,10 @@ stages:
       inputs:
         scanType: 'images'
         twistlockService: 'twistlock'
-        vulnerabilityThreshold: 'medium'
+        vulnerabilityThreshold: 'critical'
         onlyFixed: false
         gracePeriod: '0'
-        complianceThreshold: 'medium'
+        complianceThreshold: 'critical'
         artifact: '$(imageRepository):$(tag)'
     
     - task: ArtifactoryDocker@1
@@ -96,16 +96,16 @@ stages:
         targetRepo: 'docker'
         imageName: '$(imageRepository):$(tag)'
         
-    #- task: OctopusPack@4
-      #inputs:
-        #PackageId: 'python-docker'
-        #PackageFormat: 'NuPkg'
-        #SourcePath: '$(Build.SourceDirectory)'
-        #OutputPath: '$(Build.SourceDirectory)'
+    - task: OctopusPack@4
+      inputs:
+        PackageId: 'python-docker'
+        PackageFormat: 'NuPkg'
+        SourcePath: '$(Build.SourceDirectory)'
+        OutputPath: '$(Build.SourceDirectory)'
     
-    #- task: OctopusPush@4
-      #inputs:
-        #OctoConnectedServiceName: 'Octopus'
-        #Space: 'Spaces-1'
-        #Package: '$(Build.SourceDirectory)*.nupkg'
-        #Replace: 'false'
+    - task: OctopusPush@4
+      inputs:
+        OctoConnectedServiceName: 'Octopus'
+        Space: 'Spaces-1'
+        Package: '$(Build.SourceDirectory)/*.nupkg'
+        Replace: 'false'
