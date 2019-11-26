@@ -107,7 +107,7 @@ stages:
     - task: OctopusPush@4
       inputs:
         OctoConnectedServiceName: 'Octopus'
-        Space: 'Spaces-1'
-        Package: '$(Build.ArtifactStagingDirectory)\python-docker.$(Build.BuildNumber).nupkg'
+        Space: 'Default'
+        Package: '$(Build.ArtifactStagingDirectory)\python-docker.$(Build.BuildNumber).zip'
         Replace: 'false'
     
