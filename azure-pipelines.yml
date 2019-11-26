@@ -99,7 +99,7 @@ stages:
     - task: OctopusPack@4
       inputs:
         PackageId: 'python-docker'
-        PackageFormat: 'NuPkg'
+        PackageFormat: 'Zip'
         PackageVersion: '$(Build.BuildNumber)'
         SourcePath: '$(Build.ArtifactStagingDirectory)'
         OutputPath: '$(Build.ArtifactStagingDirectory)\drop'
