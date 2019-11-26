@@ -113,6 +113,6 @@ stages:
       inputs:
         OctoConnectedServiceName: 'Octopus'
         Space: 'Default'
-        Package: '$(Build.ArtifactStagingDirectory)\drop\python-docker.$(Build.BuildNumber).zip'
+        Package: '$(Build.ArtifactStagingDirectory)\drop\python-docker.$(Build.BuildNumber)'
         Replace: 'false'
     
