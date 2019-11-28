@@ -111,7 +111,7 @@ stages:
         publishLocation: 'Container'
     - task: OctopusPush@4
       inputs:
-        OctoConnectedServiceName: 'Octopus'
+        OctoConnectedServiceName: 'octopus new'
         Space: 'Default'
         Package: '$(Build.ArtifactStagingDirectory)\drop\python-docker.$(Build.BuildNumber)'
         Replace: 'false'
